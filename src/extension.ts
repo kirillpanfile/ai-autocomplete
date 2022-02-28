@@ -1,11 +1,19 @@
-import * as vscode from 'vscode';
+// @ts-check
 
-export function activate(context: vscode.ExtensionContext) {
-	console.log('Congratulations, your extension "ai-autocomplete" is now active!');
-	let disposable = vscode.commands.registerCommand('ai-autocomplete.helloWorld', () => {
-		vscode.window.showInformationMessage('Hello World from ai-autocomplete!');
-	});
+const vscode = require('vscode');
 
-	context.subscriptions.push(disposable);
-}
-export function deactivate() { }
+/**
+ * @type {(e: vscode.ExtensionContext) => void}
+*/
+exports.activate = function () {
+	/**
+	 * @type vscode.InlineCompletionItemProvider
+	*/
+	const provider = {
+		provideInlineCompletionItems: async (document: any, position: any) => {
+
+		}
+	};
+
+	vscode.languages.registerInlineCompletionItemProvider({ pattern: '**' }, provider);
+};
